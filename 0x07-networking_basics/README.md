@@ -198,8 +198,6 @@ Source for question 1 [here](https://twitter.com/devopsreact/status/831922429215
 | 5. Is the host on the network | [5-is_the_host_on_the_network](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/5-is_the_host_on_the_network) | Bash script that pings an IP address passed as an argument. |
 | 6: README File | [README.md](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/README.md) | README file containing information about the repository |
 
-<br>
-<br>
 ## Author
 
 [Peter Opoku-Mensah](https://github.com/deezyfg)
