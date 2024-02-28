@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Background Context(#background-context)
+1. [Background Context](#background-context)
 2. [Resources](#resources)
 3. [Introduction](#introduction)
 4. [Prerequisites](#prerequisites)
