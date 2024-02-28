@@ -10,14 +10,13 @@ Networking is a fundamental aspect of computer systems, and understanding its ba
 4. [More Info](#more-info)
 5. [Outlined Project Tasks](outlined_project_tasks)
 5. [Structured Overview of Repository Contents](structured-overview-of-repository-contents)
-    - [0-OSI_model](./0-OSI_model)
-    - [1-types_of_network](#1-repetition_token_0rb)
-    - [2-MAC_and_IP_address](#2-MAC_and_IP_address)
-    - [3-UDP_and_TCP](#3-UDP_and_TCP)
-    - [4-TCP_and_UDP_ports(#4-tcp_and_udp_ports)
+    - [0-OSI_model](0-OSI_model)
+    - [1-types_of_network](1-repetition_token_0rb)
+    - [2-MAC_and_IP_address](2-MAC_and_IP_address)
+    - [3-UDP_and_TCP](3-UDP_and_TCP)
+    - [4-TCP_and_UDP_ports](4-tcp_and_udp_ports)
     - [5-is_the_host_on_the_network](5-is_the_host_on_the_network)
 6. [Author](#author)
-
 
 ## Resources
 
@@ -199,6 +198,8 @@ Source for question 1 [here](https://twitter.com/devopsreact/status/831922429215
 | 5. Is the host on the network | [5-is_the_host_on_the_network](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/5-is_the_host_on_the_network) | Bash script that pings an IP address passed as an argument. |
 | 6: README File | [README.md](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/README.md) | README file containing information about the repository |
 
+<br>
+<br>
 ## Author
 
 [Peter Opoku-Mensah](https://github.com/deezyfg)
