@@ -44,7 +44,7 @@ Networking is a fundamental aspect of computer systems, and understanding its ba
 
 ## Learning Objectives
 
-At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/), without the help of Google:
+At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/), **without the help of Google**:
 
 ### OSI Model
 
@@ -190,7 +190,7 @@ Source for question 1 [here](https://twitter.com/devopsreact/status/831922429215
 
 | Tasks | Files | Description |
 | ----- | ----- | ----------- |
-| 0: OSI model | [/0-OSI_model](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/0-OSI_model) | Text file containing content about the OSI model (2 lines) |
+| 0: OSI model | [0-OSI_model](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/0-OSI_model) | Text file containing content about the OSI model (2 lines) |
 | 1: Types of network | [1-types_of_network](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/1-types_of_network) | Text file containing content about types of networks (3 lines) |
 | 2: MAC and IP address | [2-MAC_and_IP_address](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/2-MAC_and_IP_address) | Text file containing content about MAC and IP addresses (2 lines) |
 | 3: UDP and TCP | [3-UDP_and_TCP](https://github.com/deezyfg/alx-system_engineering-devops/blob/master/0x07-networking_basics/3-UDP_and_TCP) | Text file containing content about UDP and TCP (1 line)
