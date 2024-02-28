@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-1. Background Context
-2. Resources
+1. [Background Context(#background-context)
+2. [Resources](#resources)
 3. [Introduction](#introduction)
 4. [Prerequisites](#prerequisites)
 5. [Usage](#usage)
@@ -16,7 +16,7 @@
     - [4-repetition_token_3.rb](#4-repetition_token_3rb)
     - [5-beginning_and_end.rb](#5-beginning_and_endrb)
     - [6-phone_number.rb](#6-phone_numberrb)
-    - [7-OMG_WHY_ARE_YOU_SHOUTING.rb](#7-OMG_WHY_ARE_YOU_SHOUTINGrb)
+    - [7-OMG_WHY_ARE_YOU_SHOUTING.rb](#7-omg_why_are_you_shoutingrb)
 7. [Author](#author)
 
 ## Background Context
