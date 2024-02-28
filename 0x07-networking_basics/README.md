@@ -11,7 +11,7 @@ Networking is a fundamental aspect of computer systems, and understanding its ba
 5. [Outlined Project Tasks](outlined_project_tasks)
 5. [Structured Overview of Repository Contents](structured-overview-of-repository-contents)
     - [0-OSI_model](0-OSI_model)
-    - [1-types_of_network](1-repetition_token_0rb)
+    - [1-types_of_network](1-types_of_network)
     - [2-MAC_and_IP_address](2-MAC_and_IP_address)
     - [3-UDP_and_TCP](3-UDP_and_TCP)
     - [4-TCP_and_UDP_ports](4-tcp_and_udp_ports)
