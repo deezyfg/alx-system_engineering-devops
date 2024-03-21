@@ -30,7 +30,7 @@ Functioning as a thorough guide to web infrastructure design, this repository of
 
 For this project, we expect you to look at these concepts:
 
-<details>
+<details id="dns">
   <summary><a href="#dns"><strong>DNS</strong></a></summary><br>
 
   <!-- Image -->
@@ -59,7 +59,7 @@ For this project, we expect you to look at these concepts:
 </details>
 
 
-<details>
+<details id="monitoring">
   <summary><a href="#monitoring"><strong>Monitoring</strong></a></summary><br>
 
   <!-- Image -->
@@ -71,7 +71,7 @@ For this project, we expect you to look at these concepts:
 </details>
 
 
-<details>
+<details id="web-server">
   <summary><a href="#web-server"><strong>Web Server</strong></a></summary><br>
 
   <!-- Image -->
@@ -96,7 +96,7 @@ For this project, we expect you to look at these concepts:
 </details>
 
 
-<details>
+<details id="network-basics">
   <summary><a href="#network-basics"><strong>Network basics</strong></a></summary><br>
 
   <!-- Image -->
@@ -120,7 +120,7 @@ For this project, we expect you to look at these concepts:
 </details>
 
 
-<details>
+<details id="load-balancer">
   <summary><a href="#load-balancer"><strong>Load balancer</strong></a></summary><br>
 
   <!-- Image -->
@@ -142,7 +142,7 @@ For this project, we expect you to look at these concepts:
 </details>
 
 
-<details>
+<details id="server">
   <summary><a href="#server"><strong>Server</strong></a></summary><br>
 
   <!-- Image -->
