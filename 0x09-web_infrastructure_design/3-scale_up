@@ -1,13 +1,1 @@
-# Scale Up Infrastructure Design
-
-## Infrastructure Diagram
-
-![Infrastructure Diagram](https://imgur.com/3oUL6KV)
-
----
-
-## Explanation of Specifics
-
-### For every additional element, why you are adding it
-
-- **Explanation:** We have added one server and one load balancer. The addition of the new server allows for the separation of each component (web server: Nginx, application server: code base, and database: MySQL) onto separate servers, while also maintaining an extra server with all components to act as a backup in case of any component or server failure. Each server is equipped with monitoring capabilities and a firewall to ensure system security. Moreover, the addition of an extra load balancer assists in efficiently handling increased traffic across the entire infrastructure.
+https://imgur.com/3oUL6KV
