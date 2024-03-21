@@ -239,3 +239,9 @@ At the end of this project, you are expected to be able to [explain to anyone](h
   </li>
 </ul>
 </details>
+
+---
+
+## Author
+
+[Peter Opoku-Mensah](https://github.com/deezyfg/)
