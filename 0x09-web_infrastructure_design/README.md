@@ -254,7 +254,7 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 
 ## Infrastructure Diagram
 
-![Infrastructure Diagram](https://imgur.com/AnVFiU4)
+![Infrastructure Diagram](https://imgur.com/AnVFiU4.png)
 
 ---
 
@@ -311,7 +311,7 @@ PHP, etc. in response to client requests. It communicates with the web server to
 
 ## Infrastructure Diagram
 
-![Infrastructure Diagram](https://imgur.com/zSxgNzf)
+![Infrastructure Diagram](https://imgur.com/zSxgNzf.png)
 
 ---
 
@@ -366,7 +366,7 @@ works
 
 ## Infrastructure Diagram
 
-![Infrastructure Diagram](https://imgur.com/7koKeee)
+![Infrastructure Diagram](https://imgur.com/7koKeee.png)
 
 ---
 
@@ -419,7 +419,7 @@ application server) might be a problem
 
 ## Infrastructure Diagram
 
-![Infrastructure Diagram](https://imgur.com/3oUL6KV)
+![Infrastructure Diagram](https://imgur.com/3oUL6KV.png)
 
 ---
 
