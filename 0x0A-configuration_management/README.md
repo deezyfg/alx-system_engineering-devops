@@ -9,8 +9,8 @@ This project revolves around implementing a strong configuration management syst
 1. [Background Context](#background-context)
 2. [Resources](#resources)
 3. [Learning Objectives](#learning-objectives)
-4. [Prerequisites](#prerequisites)
-5. [Outlined Project Tasks](#outlined_project_tasks)
+4. [Requirements](#requirements)
+5. [Tasks](#tasks)
 6. [Author](#author)
 
 ## Background Context
