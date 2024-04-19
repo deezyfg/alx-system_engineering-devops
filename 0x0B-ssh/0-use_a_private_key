@@ -1,0 +1,6 @@
+#!/bin/bash
+# Connect to the server using SSH.
+# Private key: ~/.ssh/school
+# User: ubuntu
+
+ssh -i ~/.ssh/school ubuntu@54.167.187.16
