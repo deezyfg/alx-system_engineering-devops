@@ -38,6 +38,10 @@ Obviously writing Puppet code for your infrastructure requires an investment of 
 - [Puppet emacs mode](https://github.com/voxpupuli/puppet-mode)
 - [Puppet CookBook](https://www.puppetcookbook.com/)
 
+## Learning Objectives
+
+At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/), **without the help of Google:**
+
 ## Requirements
 
 ### General
