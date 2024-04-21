@@ -2,7 +2,7 @@
 
 # Host-specific configuration
 Host web-01
-    HostName 35.243.128.200  # Server's hostname
-    User ubuntu               # Username to connect to the server
-    IdentityFile ~/.ssh/school  # Private key to use for authentication
-    PasswordAuthentication no  # Disable password authentication
+    HostName 35.243.128.200
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
