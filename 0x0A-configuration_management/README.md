@@ -58,30 +58,61 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 
 Your Ubuntu 20.04 VM should have Puppet 5.5 preinstalled.
 
-### **Install `puppet`**
+To check if Puppet is preinstalled on your `Ubuntu 20.04 VM`, you can use the `dpkg` command, which is the package manager for Debian-based systems like `Ubuntu`. Here's how you can do it:
 
-To install **`Puppet`**, execute the following commands:
+```bash
+dpkg -l | grep puppet
 
 ```
-$ apt-get install -y ruby=1:2.7+1 --allow-downgrades
-$ apt-get install -y ruby-augeas
-$ apt-get install -y ruby-shadow
-$ apt-get install -y puppet
+
+### **`Puppet` Installation**
+
+#### Pre-installation Requirements
+
+Before installing **Puppet**, ensure that the following dependencies are installed:
+
+- **Ruby**: Required for Puppet.
+- **Ruby Augeas**: A Ruby binding for the Augeas configuration library.
+- **Ruby Shadow**: A Ruby interface for the system shadow password database.
+- **Puppet**: The configuration management tool itself.
+
+##### Installation
+
+Install the dependencies and `Puppet` using the following commands:
+
 ```
+$ sudo apt-get install -y ruby=1:2.7+1 --allow-downgrades
+```
+*This command installs Ruby version 2.7 (specifically `version 1`) which is compatible with `Puppet`.*
+
+```
+$ sudo apt-get install -y ruby-augeas
+```
+*This command installs the Ruby binding for Augeas, which Puppet may require for certain configurations.*
+
+```
+$ sudo apt-get install -y ruby-shadow
+```
+*This command installs the Ruby interface for managing system shadow passwords, which Puppet may utilize.*
+
+```
+$ sudo apt-get install -y puppet
+```
+This command installs Puppet, the configuration management tool itself.
 
 You do **not** need to attempt to upgrade versions. This project is simply a set of tasks to familiarize you with the basic level syntax which is virtually identical in newer versions of Puppet.
 
 For more information, refer to the [Puppet 5 Documentation](https://www.puppet.com/docs/puppet/5.5/puppet_index.html)
 
-### **Install `puppet-lint`**
+### **`Puppet-Lint` Installation**
 
-To install **`puppet-lint`**, execute the following command:
+Install **`puppet-lint`** using gem by executing the following command:
 
 ```
 $ gem install puppet-lint
 ```
 
-### Confirm installations by checking versions:
+### Confirm Installations By Checking Versions:
 
 #### **`For Puppet`:**
 
@@ -107,7 +138,86 @@ $ puppet-lint --version
 $ puppet-lint --v
 ```
 
-*These commands will display the respective version numbers, confirming the successful installation of Puppet and puppet-lint.*
+*These commands will display the respective version numbers, confirming the successful installation of `puppet` and `puppet-lint`.*
+
+
+### Additional Troubleshooting
+
+If you encounter errors during Puppet installation or when running `Puppet` commands, try the following:
+
+* **Updating Puppet Repository:** If `Puppet` is not preinstalled or you encounter version conflicts, update the `Puppet` repository and install `Puppet 7`:
+
+  - Download the Puppet 7 release package for Ubuntu 20.04:
+    ```bash
+    wget https://apt.puppet.com/puppet7-release-focal.deb
+    ```
+    This command downloads the Puppet 7 release package for Ubuntu 20.04.
+
+  - Install the downloaded Puppet 7 release package:
+    ```bash
+    dpkg -i puppet7-release-focal.deb
+    ```
+    This command installs the downloaded Puppet 7 release package.
+
+  - Update the local package index to reflect the changes made by installing the Puppet 7 release package:
+    ```bash
+    apt-get update
+    ```
+
+  - Install Puppet Agent (the Puppet client) and Puppet Lint (a tool for checking Puppet code syntax) with the `-y` flag, which automatically answers "yes" to any prompts to confirm the installation:
+    ```bash
+    apt-get install puppet-agent puppet-lint -y
+    ```
+    This command installs Puppet Agent (the Puppet client) and Puppet Lint (a tool for checking Puppet code syntax) with the `-y` flag, which automatically answers "yes" to any prompts to confirm the installation.
+
+
+* **Setting Environment Variables:** If the **`puppet`** command is not found even after confirming its installation with `puppet --version`, you can set the necessary environment variables by sourcing the `puppet-agent.sh` script.
+
+```
+$ source /etc/profile.d/puppet-agent.sh
+```
+
+- **Rechecking Puppet Version:** After setting the environment variables, verify the `Puppet` version:
+
+```
+$ puppet --version
+```
+
+### Resolving Flask Installation Issues
+
+If you encounter issues with Flask installation, such as import errors, follow these steps to tackle them:
+
+#### 1. Apply Puppet Manifest:
+
+Apply the Puppet manifest (`1-install_a_package.pp`) to install `Flask`:
+
+```
+$ puppet apply 1-install_a_package.pp
+```
+
+#### 2. Upgrade Werkzeug:
+
+Upgrade Werkzeug to a compatible version (e.g., 2.1.1) using `pip`:
+
+```
+$ pip install Werkzeug==2.1.1
+```
+
+#### 3. Verify Flask Installation:
+
+Check the version of Flask installed to ensure that the installation was successful:
+```
+$ flask --version
+```
+
+You should see output similar to:
+```
+Python 3.8.10
+Flask 2.1.0
+Werkzeug 2.1.1
+```
+
+For more detailed information, refer to [Flask Documentation.](https://flask.palletsprojects.com/en/3.0.x/)
 
 ## Tasks
 
