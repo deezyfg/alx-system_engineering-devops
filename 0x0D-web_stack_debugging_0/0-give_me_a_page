@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script starts the Apache service
+# to return a page containing "Hello Holberton"
+service apache2 start
