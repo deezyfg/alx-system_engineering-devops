@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Description:
+#   This Bash script configures a new Ubuntu machine by installing Nginx.
+#   Nginx will be configured to listen on port 80.
+#   It will serve a page that returns the string "Hello World!" when accessed at its root.
+
+# Print message indicating Nginx update and installation process.
+echo -e "Updating and installing Nginx.\n"
+
+# Update package lists and install Nginx silently
+sudo apt-get update -y -qq && \
+	 sudo apt-get install nginx -y
+
+# Print message indicating setup of minor configurations.
+echo -e "\nSetting up some minor stuff.\n"
+
+# Start the Nginx service
+sudo service nginx start
+
+# Allow Nginx through the firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Give the user ownership of website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+# Backup the default index file
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# Create a new index file with Hello World!
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Set up redirection to a YouTube video for /redirect_me
+sudo sed -i '24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Set up a 404 page
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
+sudo sed -i '25i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply changes
+sudo service nginx restart
+
+# Print completion message.
+echo -e "\nCompleted.\n"
