@@ -194,3 +194,202 @@ Note that the `docker` command will pull the Ubuntu docker container image from 
 </ul>
 <strong>File:</strong> [0-give_me_a_page](0-give_me_a_page)
 </details>
+
+---
+
+# Additional Information
+
+## Debugging Apache2 Server in Docker Container
+
+In this task, you'll learn how to debug and fix issues in a Docker container running an Apache2 server. Follow the steps below to get started:
+
+### Step 1: Install Docker
+
+Before getting started, make sure to install Docker on your local machine. Ensure it's properly installed and running.
+
+* [Install Docker on Ubuntu (4 Easy Ways)](https://kinsta.com/blog/install-docker-ubuntu/)
+* [Install Docker Desktop on Windows](https://docs.docker.com/desktop/install/windows-install/)
+* [Install Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/)
+
+### Step 2: Verify Docker Version
+
+To verify the version of Docker installed on your system, you can use either of the following commands:
+
+```
+docker -v
+```
+
+or
+
+```
+docker --version
+```
+
+### Step 3: Run Docker Container with Apache2
+
+To run the specified Docker container with Apache2 installed, follow these steps:
+
+1. Open your terminal.
+2. Execute the following command:
+
+```
+docker run -p 8080:80 -d -it holbertonschool/265-0
+```
+
+This command starts a Docker container based on the `holbertonschool/265-0 image`, while also mapping port `8080` on your host to port `80` in the container.
+
+**NOTE**:
+
+**(a)** By default, Docker commands require `root` privileges, necessitating the use of `sudo` as a prefix. Attempting to run Docker commands without `sudo` results in an error message like the following:
+```
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+```
+
+Running a command like `sudo docker run -p 8080:80 -d -it holbertonschool/265-0` will prompt for the `sudo` password, which is typically the user's password on their device, and then proceed with the Docker operations. It may display output similar to:
+```
+Unable to find image 'holbertonschool/265-0:latest' locally
+latest: Pulling from holbertonschool/265-0
+c60055a51d74: Pull complete 
+755da0cdb7d2: Pull complete 
+1403e424ed38: Pull complete 
+37c9a9113595: Pull complete 
+a3d9f8479786: Pull complete 
+72050e30266b: Pull complete 
+Digest: sha256:72581a2b9f94f33f6c3e8a133607ed208d20f8f35c5b6b15183615a2b735ae1a
+Status: Downloaded newer image for holbertonschool/265-0:latest
+d9dc2fa2ddedd7c1cce0ad97d901d4813452d5fbbf3a0e671a2a616a8c16520a
+```
+
+**(b)** To bypass this requirement, you can add your user to the `docker` group, which Docker automatically creates during installation to authorize interaction without `sudo`. Execute the following command to add your user to the docker group:
+```
+sudo usermod -aG docker $USER
+```
+After executing this command, ensure you log out and then log back in to apply the changes.
+
+You can learn more about this process in detail by visiting this [link.](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04#step-2-executing-the-docker-command-without-sudo-optional)
+
+**(c)** If you are unsure about your username, you can check the current user by running the `whoami` command:
+```
+whoami
+```
+
+This command will display the username of the current user within the Docker container.
+
+### Step 4: Check Docker Container Status
+
+You can verify that the container is running by using the following command:
+```
+sudo docker ps
+```
+
+This command will list the running Docker containers, displaying details such as the container ID, image, command, status, and exposed ports.
+
+An example output might resemble:
+```
+CONTAINER ID   IMAGE                   COMMAND       CREATED              STATUS              PORTS                                   NAMES
+d9dc2fa2dded   holbertonschool/265-0   "/bin/bash"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   objective_sutherland
+```
+
+deezyfg@deezyfg:~$ sudo docker ps
+CONTAINER ID   IMAGE                   COMMAND       CREATED              STATUS              PORTS                                   NAMES
+d9dc2fa2dded   holbertonschool/265-0   "/bin/bash"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   objective_sutherland
+
+These outputs demonstrate successful Docker operations performed with sudo, where the sudo password is typically the user's password on their device.
+
+### Step 5: Access Docker Container Terminal
+
+To access the terminal within your Docker container, you can use the `docker exec` command with the `-ti` options to open an interactive terminal session. Here's the command:
+```
+sudo docker exec -ti CONTAINER_ID /bin/bash
+```
+
+Replace **`CONTAINER_ID`** with the actual ID or name of your Docker container.
+
+For example, if your container ID is **`d9dc2fa2dded`**, the command would be:
+```
+sudo docker exec -ti d9dc2fa2dded /bin/bash
+```
+This command will open an interactive Bash session within the specified Docker container, allowing you to execute commands and interact with the container's filesystem.
+
+If you are unsure how to obtain the container ID, you can use the command `sudo docker ps`. This will list all running Docker containers along with their IDs.
+
+### Step 6: Verify Container Access
+
+After accessing the Docker container terminal, you can verify by executing the command `ls`. This will list the contents of the current directory within the container:
+```
+root@d9dc2fa2dded:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+```
+
+### Step 7: Test Apache2 Server and Troubleshoot
+
+**Open a Second Terminal Window**
+
+In a new terminal window, execute the following command:
+
+```
+curl 0:8080
+```
+
+If you receive a response like this:
+
+```
+curl: (52) Empty reply from server
+```
+
+It indicates that there is an issue with the Apache2 server running inside the Docker container. Proceed back to the first terminal to diagnose and resolve the problem.
+
+This step helps identify any potential issues with the  Docker container's Apache2 server configuration, allowing for troubleshooting and resolution in the first Terminal.
+
+### Step 8: Check Apache2 Server Status
+
+* In the first terminal window, execute the following command:
+```
+sudo service apache2 status
+```
+
+If Apache2 is not running, you will receive an output similar to:
+```
+ * apache2 is not running
+```
+
+* In this case, where Apache2 is not running, execute the command:
+```
+sudo service apache2 start
+```
+
+You will receive output similar to:
+```
+ * Starting web server apache2                                                  AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+ * 
+```
+
+* Check the status again:
+```
+sudo service apache2 status
+```
+
+You will receive output indicating that Apache2 is running:
+```
+ * apache2 is running
+```
+
+### Step 9: Verify Server Fix
+
+Return to the second terminal.
+
+Execute the command again:
+```
+curl 0:8080
+```
+
+If the server is now functioning correctly, you will receive a response such as:
+```
+Hello Holberton
+```
+
+This confirms that the server issue has been successfully resolved, and `Apache2` is now responding appropriately to requests.
+
+After resolving the server issue, it is necessary to document the commands used. In this case, only one command was used which is **`sudo service apache2 start`**. Ensure to create a script file using a text editor such as **`emacs**`` and include the command within it.
