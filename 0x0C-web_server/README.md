@@ -157,3 +157,158 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/Vs2dxb0D/image.png' border='0' alt='image'/></a>
 <strong>File:</strong> [7-puppet_install_nginx_web_server.pp](7-puppet_install_nginx_web_server.pp)
 </details>
+
+---
+
+# Additional Information
+
+## Transfer Files Using SCP (Secure Copy Protocol)
+
+To transfer files from your local terminal to a server or between Linux machines, you can use SCP (Secure Copy Protocol). Follow these steps to accomplish this:
+
+### 1. Log in to Your Server:
+
+Access your server directly using the SSH automation setup in the the previous section [0x0B-ssh](../0x0B-ssh), typically by entering:
+
+```
+web01
+```
+
+Then, check the contents of the directory:
+```
+ls -la
+```
+
+### 2. Transfer a File from Local Machine to Server:
+
+Use the `scp` command to transfer a file from your local machine to the server. Execute the following command, specifying the path to the file you wish to transfer:
+
+```
+scp <filename> <username of the server>@<IP address>:<path to store the file on the server>
+```
+Replace `<filename>` with the name of the file, `<username of the server>` with your server's username, `<IP address>` with the server's IP address, and `<path to store the file on the server>` with the desired destination path on the server.
+
+For example, consider the following command:
+```
+scp dummy ubuntu@18.209.225.255:/home/ubuntu
+```
+This command transfers the file named `"dummy"` from the local machine to the server with the username `"ubuntu"` at the IP address `"18.209.225.255"`, and stores it in the directory `"/home/ubuntu"` on the server.
+
+### 3. Check Transfer on Server:
+
+Verify if the file has been successfully transferred by navigating to the directory on the server and checking its contents:
+```
+ls -la
+```
+
+4. ### Using Specific SSH Keys for File Transfer:
+
+If you have multiple SSH keys, specify which one to use with the `-i` option followed by the path to the desired SSH key:
+```
+scp -i <path to your ssh key> <filename> <username of the server>@<IP address>:<path to store the file on the server>
+```
+Replace `<path to your SSH key>` with the path to your specific SSH key file, `<filename>` with the name of the file to transfer, `<username of the server>` with your server's username, `<IP address>` with the server's IP address, and `<path to store the file on the server>` with the desired destination path on the server.
+
+This command specifies the SSH key (`<path to your ssh key>`) to be used during the file transfer operation. It ensures that the file is securely transferred using the specified SSH key, enhancing authentication and access control measures.
+
+For example:
+```
+scp -i ~/.ssh/id_rsa dummy ubuntu@18.209.225.255:/home/ubuntu
+```
+This command transfers the file named `"dummy"` from the local machine to the server with the username `"ubuntu"` at the IP address `"18.209.225.255"`, using the SSH key located at `"~/.ssh/id_rsa"` for authentication, and stores it in the directory `"/home/ubuntu"` on the server.
+
+
+## Installing and Setting Up NGINX Using Scripts
+
+Follow these steps to install and set up NGINX using scripts:
+
+### 1. Log in to Your Server:
+
+Access your server directly using the SSH automation setup in the the previous section [0x0B-ssh](../0x0B-ssh), typically by entering:
+
+```
+web01
+```
+
+Then, check the contents of the directory:
+```
+ls -la
+```
+
+2. # Create and Run the NGINX Setup Script:
+
+* Create a file named `nginx-setup` on your SSH server and insert the contents from [4-not_found_page_404](4-not_found_page_404) into it. Execute the following command to create the file:
+```
+nano nginx-setup  # Use nano or any preferred text editor to create the file
+```
+
+* Make the file executable:
+```
+chmod u+x nginx-setup
+```
+
+* Execute the file to install NGINX:
+```
+./nginx-setup
+```
+
+* Verify NGINX Installation:
+After installation, ensure NGINX is running properly by executing:
+```
+curl localhost
+```
+
+You should receive the output:
+```
+Hello World!
+```
+
+Now, if you paste your server's IP address into any web browser, you should see the string "Hello World!" displayed.
+
+3. Testing Redirection:
+You can test redirection by accessing `<your_ip_address>/redirect_me/` in a web browser. Replace `<your_ip_address>` with the actual IP address of your server.
+Example:
+```
+54.167.187.16/redirect_me/
+```
+
+* Alternatively, you can use the following command in your terminal to check redirection using curl:
+
+```
+curl localhost/redirect_me/
+```
+
+You should receive the output:
+```
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+```
+This confirms that redirection is functioning properly.
+
+### 4. Using Your Domain Name:
+
+If you have a domain name set up, you can also test NGINX using it:
+
+```
+curl <domain_name>
+```
+Replace `<domain_name>` with the actual domain name you have set up for your server.
+
+For example:
+```
+curl opokumensahpeter.tech
+```
+
+You should receive the output:
+```
+Hello World!
+```
+
+This confirms that NGINX is serving the expected content.
+
+Remember, you can use various text editors like nano, emacs, vi, or vim depending on your preference. Additionally, when using nano, you can paste text by pressing `Ctrl + Shift + V`. To save and exit nano, use `Ctrl + O` to write out the file, followed by `Enter`, and `Ctrl + X` to exit.
