@@ -124,22 +124,24 @@ Replace `<ssh_public_key>` with the actual SSH public key you want to add to the
 
 To save time logging into your server, you can automate the process using a script. Follow these steps:
 
-1. Open a text editor like Emacs and create a new file named web01.
+1. Open a new terminal on your local machine.
 
-2. Paste the following command into the file:
+2. Use a text editor like `Emacs`, `Vim`, `Nano`, or any other editor of your choice to create a new file named `"web01"`.
+
+3. Paste the following command into the file:
 ```
 ssh ubuntu@<your_server_ip>
 ```
 Replace <your_server_ip> with the actual IP address of your server. This command will connect you to your server.
 
-3. Save the file and exit the text editor.
+4. Save the file and exit the text editor.
 
-4. Make the script executable by running the following command:
+5. Make the script executable by running the following command:
 ```
 chmod u+x web01
 ```
 
-5. Now, whenever you want to connect to your server, simply run the script:
+6. Now, whenever you want to connect to your server, simply run the script:
 ```
 ./web01
 ```
