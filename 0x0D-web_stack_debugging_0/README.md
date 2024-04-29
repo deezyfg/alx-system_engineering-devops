@@ -229,7 +229,7 @@ docker --version
 
 To run the specified Docker container with Apache2 installed, follow these steps:
 
-1. Open your terminal.
+1. Open your terminal on your local machine.
 2. Execute the following command:
 
 ```
@@ -290,10 +290,6 @@ An example output might resemble:
 CONTAINER ID   IMAGE                   COMMAND       CREATED              STATUS              PORTS                                   NAMES
 d9dc2fa2dded   holbertonschool/265-0   "/bin/bash"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   objective_sutherland
 ```
-
-deezyfg@deezyfg:~$ sudo docker ps
-CONTAINER ID   IMAGE                   COMMAND       CREATED              STATUS              PORTS                                   NAMES
-d9dc2fa2dded   holbertonschool/265-0   "/bin/bash"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   objective_sutherland
 
 These outputs demonstrate successful Docker operations performed with sudo, where the sudo password is typically the user's password on their device.
 
