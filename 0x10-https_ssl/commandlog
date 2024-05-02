@@ -1,0 +1,45 @@
+# Command log file for setting up SSL/TLS certificates with HAProxy
+
+# Update package database
+sudo apt update
+
+# Install snapd for managing snap packages
+sudo apt install snapd
+
+# Remove certbot if it's previously installed
+sudo apt-get remove certbot
+
+# Install certbot for obtaining SSL/TLS certificates
+sudo apt-get install certbot
+
+# Check the status of the HAProxy service
+sudo systemctl status haproxy
+
+# Stop HAProxy if it's currently running
+sudo service haproxy stop
+
+# Verify if HAProxy has stopped by sending a GET request to localhost using cURL
+curl localhost
+
+# Obtain SSL/TLS certificates using certbot
+sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d www.opokumensahpeter.tech
+
+# List contents of Let's Encrypt live directory
+sudo ls /etc/letsencrypt/live/www.opokumensahpeter.tech
+
+# Create a directory for HAProxy certificates
+sudo mkdir -p /etc/haproxy/certs
+
+# Concatenate the full certificate chain and private key into a single file for HAProxy
+DOMAIN='www.opokumensahpeter.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
+
+# Restrict permissions on the HAProxy certificates directory
+sudo chmod -R go-rwx /etc/haproxy/certs
+
+# Edit the HAProxy configuration file
+sudo nano /etc/haproxy/haproxy.cfg
+
+# Insert the contents of 100-redirect_http_to_https into /etc/haproxy/haproxy.cfg
+
+# Start or restart HAProxy
+sudo service haproxy start
