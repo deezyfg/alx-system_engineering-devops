@@ -29,7 +29,7 @@ For this project, we expect you to look at this concept:
 <details>
 <summary>Test and verify your assumptions</summary><br>
 <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/rFMtkCt8/image.png' border='0' alt='image'/></a>
-
+</details>
 
 <details>
 <summary>Get a quick overview of the machine state</summary><br>
@@ -67,7 +67,7 @@ For this project, we expect you to look at this concept:
   <li>What processes are using sockets</li>
   <li>Try netstat -lpn on a Ubuntu machine</li>
 </ul>
-
+</details>
 
 <details>
 <summary>Machine</summary><br>
@@ -88,7 +88,7 @@ For this project, we expect you to look at this concept:
   <li>Increase the machine resources (adding memory, CPU, disk space…)</li>
   <li>Distributing the resource usage to other machines</li>
 </ul>
-
+</details>
 
 <details>
 <summary>Network issue</summary><br>
@@ -105,7 +105,7 @@ For this project, we expect you to look at this concept:
     </ul>
   </li>
 </ul>
-
+</details>
 
 <details>
 <summary>Process issue</summary><br>
@@ -126,18 +126,19 @@ For this project, we expect you to look at this concept:
   </li>
   <li>Is there anything interesting in the logs? look for log files in <strong><code>/var/log/</code></strong> and <strong><code>tail -f</code></strong> is your friend</li>
 </ul>
-
+</details>
 
 <details>
 <summary>Debugging is fun</summary><br>
 <p>Debugging can be frustrating, but it will definitely be part of your job, it requires experience and methodology to become good at it. The good news is that bugs are never going away, and the more experienced you become, trickier bugs will be assigned to you! Good luck 😃</p>
 
-<p><img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/bae58c9f066a9668001ef4b4c39778407439d2f9.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240513%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240513T085722Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=6bcafa53b6ddc122890f91e949dcbeb33b676be3ca05094194c30fe9a661779b" alt="GIF"></p>
+<img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/bae58c9f066a9668001ef4b4c39778407439d2f9.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240513%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240513T085722Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=6bcafa53b6ddc122890f91e949dcbeb33b676be3ca05094194c30fe9a661779b">
 </details>
 
+</details>
 
 <p align="center">
-  <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/284/V1HjQ1Y.png" />
+  <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/284/V1HjQ1Y.png"/>
 </p>
 
 ## Background Context
