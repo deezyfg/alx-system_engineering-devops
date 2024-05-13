@@ -125,6 +125,8 @@ Note that the `docker` command will pull the Ubuntu docker container image from 
 </p>
 </details>
 
+</details>
+
 <details>
 <summary>Web stack debugging</summary><br>
 <ul>
