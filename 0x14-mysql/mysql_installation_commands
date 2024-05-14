@@ -1,0 +1,17 @@
+# Add the provided signature key to ensure the authenticity of packages
+sudo apt-key add signature.key
+
+# Retrieve the necessary GPG key from the Ubuntu key server to validate MySQL packages
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7B3B788A8D3785C
+
+# Add the MySQL repository to the package manager's sources list
+sudo sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7" >> /etc/apt/sources.list.d/mysql.list'
+
+# Update the package index to include the newly added repository
+sudo apt-get update
+
+# Display the policy for the MySQL Server package
+sudo apt-cache policy mysql-server
+
+# Install MySQL client and server packages of version 5.7
+sudo apt install -f -y mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
