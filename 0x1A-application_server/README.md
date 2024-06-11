@@ -497,3 +497,85 @@ sylvain@ubuntu$
 In this example, you can see that my Bash script tells the master Gunicorn renewed all the workers.
 
 For testing it, please use the command `$ sudo reboot` to reboot your server (not `shutdown!!`)
+
+---
+
+# Addition Information
+
+## Install **`pkg-config`**
+First, install `pkg-config` along with some other necessary dependencies:
+```
+sudo apt-get update
+sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-essential
+```
+
+* `pkg-config`: A tool for managing compile and link flags needed to build software packages.
+* `python3-dev`: Development files for the Python programming language.
+* `default-libmysqlclient-dev`: Development files for the MySQL database client library.
+* `build-essential`: Package containing references for commonly used packages for compiling software.
+
+## Install **`mysqlclient`**
+Once the dependencies are installed, proceed to install the mysqlclient package, which provides the **`MySQLdb`** module for Python:
+```
+pip install mysqlclient
+```
+
+### Useful Tips On Advanced Tasks:
+
+#### Task 6:
+
+1. Create the **`Gunicorn`** Service File:
+Begin by creating a service file named **`[gunicorn.service](gunicorn.service)`** on your web server. This file specifies how systemd manages the `Gunicorn` application server.
+
+2. Copy the Service File to **`systemd`** Directory:
+```sudo cp gunicorn.service /etc/systemd/system/gunicorn.service```
+This command copies your custom service configuration to the **`systemd`** directory where system services are defined.
+
+3. Reload **`systemd`** Manager Configuration:
+After updating service files, reload **`systemd`** to recognize the changes.
+```sudo systemctl daemon-reload```
+
+4. Start/Restart the Gunicorn service:
+Use start to initiate the Gunicorn service or restart to stop and then start it again with updated configurations.
+```sudo systemctl start gunicorn``
+
+**or**
+
+```sudo systemctl restart gunicorn```
+
+5. Enable the Gunicorn service to start automatically on system boot.:
+```sudo systemctl enable gunicorn```
+
+6. Check Gunicorn Service Status:
+Verify the current status of the Gunicorn service, ensuring it is running correctly.
+```sudo systemctl status gunicorn```
+
+### NOTE:
+Check Logs for Troubleshooting:
+If there are issues starting the service, check these logs for detailed error messages to diagnose and resolve problems:
+```
+sudo journalctl -u gunicorn.service
+cat /tmp/airbnb-error.log
+```
+
+
+#### Task 7:
+1. Create the Reload Script:
+Create a script named **`[4-reload_gunicorn_no_downtime](4-reload_gunicorn_no_downtime)`** on your server for gracefully reloading Gunicorn without service interruption.
+
+2. Make the file executable:
+```chmod +x 4-reload_gunicorn_no_downtime```
+
+3. Execute the Reload Script:
+Run the script to initiate the graceful reload of Gunicorn workers.
+```./4-reload_gunicorn_no_downtime```
+
+4. Verify Worker Reload:
+Check the process list to confirm that Gunicorn has renewed its worker processes as intended.
+```ps auxf | grep gunicorn```
+
+---
+
+## Author
+
+* [Peter Opoku-Mensah](https://github.com/deezyfg)

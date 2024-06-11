@@ -1,1 +1,24 @@
-Lets see
+#!/usr/bin/env bash
+
+# Check if the Gunicorn PID file exists
+PID_FILE="/run/hbnb/hbnb.pid"
+
+if [ ! -f "$PID_FILE" ]; then
+    echo "Gunicorn master process PID not found."
+    exit 1
+fi
+
+# Get the current master PID
+CURRENT_PID=$(cat "$PID_FILE")
+if [ -z "$CURRENT_PID" ]; then
+    echo "Failed to read Gunicorn master PID."
+    exit 1
+fi
+
+# Send HUP signal to the Gunicorn master process to gracefully reload
+echo "Reloading Gunicorn gracefully..."
+kill -HUP "$CURRENT_PID"
+
+echo "Graceful reload initiated."
+
+exit 0
