@@ -312,3 +312,7 @@ Hello World!
 This confirms that NGINX is serving the expected content.
 
 Remember, you can use various text editors like nano, emacs, vi, or vim depending on your preference. Additionally, when using nano, you can paste text by pressing `Ctrl + Shift + V`. To save and exit nano, use `Ctrl + O` to write out the file, followed by `Enter`, and `Ctrl + X` to exit.
+
+## Author
+
+* [Peter Opoku-Mensah](https://github.com/deezyfg)
