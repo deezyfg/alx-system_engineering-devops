@@ -482,6 +482,295 @@ ubuntu@03-web-01:~$
 **File:** [5-mysql_backup](5-mysql_backup)
 
 
+---
+
+# How To Go About With Task 4
+
+## Introduction
+This guide provides step-by-step instructions for **setting up MySQL Master-Slave replication** on two servers (`web01` as the master and `web02` as the slave). It includes both a detailed method and an alternative method for ease of use.
+
+## Method 1: Detailed Method
+
+### Setting Up the Master Server (`web01`)
+**File:** [4-mysql_configuration_primary](4-mysql_configuration_primary)
+
+1. Log into the master server `web02` via SSH.
+
+2. Open the MySQL configuration file for editing on the primary server `web01`:
+```
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Add the following lines under `[mysqld]`:
+```
+binlog_do_db    = tyrell_corp
+log_bin         = /var/log/mysql/mysql-bin.log
+server-id       = 1
+```
+
+3. Restart MySQL to apply the changes:
+```
+sudo service mysql restart
+```
+
+4. Verify that MySQL is running:
+```
+sudo service mysql status
+```
+
+Press **`q`** to quit the status view.
+
+5. Log into the MySQL prompt and enter the password when prompted to retrieve the binary log file name and position:
+```
+mysql -u root -p
+```
+
+6. Run the following command and note down the `File` and `Position` values:
+```
+SHOW MASTER STATUS;
+```
+
+**Example:**
+```
+* **File:** mysql-bin.000001
+* **Position:** 154
+```
+This will be needed for the replica configuration.
+ 
+7. Exit the MySQL prompt and the `web01` server:
+```
+exit
+```
+
+
+### Setting Up the Slave Server (`web02`)
+**File:** [4-mysql_configuration_replica](4-mysql_configuration_replica)
+
+1. Log into the replica server `web02` via SSH.
+
+2. Open the MySQL configuration file for editing:
+```
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Add the following lines under [mysqld]:
+```
+binlog_do_db = tyrell_corp
+relay-log = /var/log/mysql/mysql-relay-bin.log
+log_bin = /var/log/mysql/mysql-bin.log
+server-id = 2
+```
+
+3. Restart MySQL to apply the changes:
+```
+sudo service mysql restart
+```
+
+4. Verify that MySQL is running:
+```
+sudo service mysql status
+```
+
+Press **`q`** to quit the status view.
+
+5. Log into the MySQL prompt and enter the password when prompted:
+```
+mysql -u root -p
+```
+
+6. Configure the replica settings using the `File` and `Position` values obtained from the master server (`web01`):
+```
+CHANGE MASTER TO
+MASTER_HOST='insert your web-01 ip address',
+MASTER_USER='replica_user',
+MASTER_PASSWORD='insert your replication user password here',
+MASTER_LOG_FILE='insert the value from SHOW MASTER STATUS',
+MASTER_LOG_POS=insert the value from SHOW MASTER STATUS position;
+```
+Replace the placeholders with the actual values you retrieved from the master server's `SHOW MASTER STATUS` command.
+
+
+##### Task-Specific Configuration:**
+For this specific task, use the following configuration:
+```
+CHANGE MASTER TO 
+MASTER_HOST='54.167.187.16',
+MASTER_USER='replica_user',
+MASTER_PASSWORD='projectcorrection280hbtn',
+MASTER_LOG_FILE='mysql-bin.000001',
+MASTER_LOG_POS=154;
+```
+
+7. Start the replication process:
+```
+START SLAVE;
+```
+
+8. Verify that the replication is running without errors:
+```
+SHOW SLAVE STATUS\G;
+```
+
+After this command is run, confirm that `Slave_IO_Running` and `Slave_SQL_Running` are set to `'Yes`' to indicate the replica is working properly.
+
+9. Exit the MySQL prompt:
+```
+exit
+```
+
+
+#### Firewall Configuration for MySQL Access
+Ensure that UFW (Uncomplicated Firewall) is allowing connections on port `3306` (default MySQL port) on both servers otherwise replication will not work.
+
+##### On `web01`:
+1. Check the current firewall rules to see if port 3306 is already allowed:
+```
+sudo ufw status
+```
+This command will display the status of ufw (Uncomplicated Firewall) and list all active rules. Look for any existing rule that allows traffic on port 3306.
+
+2. Allow MySQL Port 3306 (If not allowed):
+```
+sudo ufw allow 3306
+```
+
+3.  Verify the New Rule after it has been successfully added:
+```
+sudo ufw status
+```
+You should now see a new entry allowing traffic on port 3306.
+
+4. Exit the server once you've confirmed the firewall configuration:
+```
+exit
+```
+
+##### On `web02`:
+1. Check the current firewall rules to see if port 3306 is already allowed:
+```
+sudo ufw status
+```
+This command will display the status of ufw (Uncomplicated Firewall) and list all active rules. Look for any existing rule that allows traffic on port 3306.
+
+2. Allow MySQL Port 3306 (If not allowed):
+```
+sudo ufw allow 3306
+```
+
+3.  Verify the New Rule after it has been successfully added:
+```
+sudo ufw status
+```
+You should now see a new entry allowing traffic on port 3306.
+
+4. Exit the server once you've confirmed the firewall configuration:
+```
+exit
+```
+
+
+#### Testing the MySQL Replication Setup
+After configuring the master-slave replication, it's important to verify that everything is set up correctly. Follow these steps to test the configuration on the master server (`web01`) and slave server (`web02`):
+
+##### On `web01`:
+1. Connect to your `web01` server via SSH if you haven't already.
+2. Once connected, access the MySQL server using the following command:
+```
+mysql -uholberton_user -p
+```
+3. When prompted, enter the password:
+```
+projectcorrection280hbtn
+```
+4. After successfully logging into MySQL, run the following command to view the master status:
+```
+SHOW MASTER STATUS;
+```
+5. Once you've verified the master status, exit the MySQL prompt:
+```
+exit
+```
+
+##### On `web02`:
+1. Connect to your `web02` server via SSH if you haven't already.
+2. Once connected, access the MySQL server using the following command:
+```
+mysql -uholberton_user -p
+```
+3. When prompted, enter the password:
+```
+projectcorrection280hbtn
+```
+4. After successfully logging into MySQL, run the following command to view the master status:
+```
+SHOW MASTER STATUS;
+```
+5. Once you've verified the master status, exit the MySQL prompt:
+```
+exit
+```
+
+---
+
+## Method 2: Simplified Script-Based Method
+### Master Server (`web01`)
+1. Create a [setup_master](setup_master) file with its contents on the server to automate the process.
+
+2. Make the script executable:
+```
+chmod +x setup_master
+```
+
+3. Execute the script with `sudo` privileges to apply configurations:
+```
+sudo ./setup_master
+```
+
+4. Log into the MySQL prompt and enter the password when prompted to retrieve the binary log file name and position:
+```
+mysql -u root -p
+```
+
+5. Run the following command and note down the `File` and `Position` values:
+```
+SHOW MASTER STATUS;
+```
+
+**Example:**
+```
+* **File:** mysql-bin.000001
+* **Position:** 154
+```
+This will be needed for the replica configuration.
+ 
+6. Exit the MySQL prompt and the `web01` server:
+```
+exit
+```
+
+
+### Slave Server (web02)
+1. Create a [setup_slave](setup_slave) file with its contents on the server to automate the process.
+
+2. Make the script executable:
+```
+chmod +x setup_slave
+```
+
+3. Execute the script with `sudo` privileges to apply configurations:
+```
+sudo ./setup_slave
+```
+
+4. Configure the replica settings using the `File` and `Position` values obtained from the master server (`web01`) as described in **Method 1.**
+
+5. Start the replication process and verify the status as described in **Method 1.**
+
+#### Testing the MySQL Replication Setup
+Follow the testing steps described in **Method 1** to ensure the replication is working correctly.
+
+---
+
 ## Author
 
 * [Peter Opoku-Mensah](https://github.com/deezyfg)
