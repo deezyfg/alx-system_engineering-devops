@@ -19,7 +19,7 @@ For this project, we expect you to look at this concept:
   <ul>
     <li><strong>Links from screenshots:</strong>
       <ul>
-        <li><a href="https://docs.google.com/document/d/1btVRofXP75Cj90_xq2x8AmzuMPOKq6D_Dt_SCDD6GrU/edit">For a comprehensive guide, click here 📄</a></li>
+        <li><a href="https://docs.google.com/document/d/1btVRofXP75Cj90_xq2x8AmzuMPOKq6D_Dt_SCDD6GrU/edit" target="_blank">For a comprehensive guide, click here 📄</a></li>
       </ul>
     </li>
   </ul>
@@ -749,7 +749,7 @@ exit
 ```
 
 
-### Slave Server (web02)
+### Slave Server (`web02`)
 1. Create a [setup_slave](setup_slave) file with its contents on the server to automate the process.
 
 2. Make the script executable:
