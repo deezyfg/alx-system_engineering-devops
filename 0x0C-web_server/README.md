@@ -235,7 +235,7 @@ Then, check the contents of the directory:
 ls -la
 ```
 
-2. # Create and Run the NGINX Setup Script:
+### 2. Create and Run the NGINX Setup Script:
 
 * Create a file named `nginx-setup` on your SSH server and insert the contents from [4-not_found_page_404](4-not_found_page_404) into it. Execute the following command to create the file:
 ```
