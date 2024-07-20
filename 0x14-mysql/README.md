@@ -10,8 +10,8 @@ For this project, we expect you to look at this concept:
   <!-- Images -->
   <div align="center">
     <a href='https://postimages.org/' target='_blank'>
-      <img src='https://i.postimg.cc/L559tXDF/image1.png' alt='Screenshot 1' style="max-width: 100%;">
-      <img src='https://i.postimg.cc/tTXCgDVT/image2.png' alt='Screenshot 2' style="max-width: 100%;">
+      <img src='https://i.postimg.cc/C53FCBqq/image1.png' alt='Screenshot 1' style="max-width: 100%;">
+      <img src='https://i.postimg.cc/fWpTQFrR/image2.png' alt='Screenshot 2' style="max-width: 100%;">
     </a>
   </div>
 
