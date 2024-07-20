@@ -313,6 +313,124 @@ This confirms that NGINX is serving the expected content.
 
 Remember, you can use various text editors like nano, emacs, vi, or vim depending on your preference. Additionally, when using nano, you can paste text by pressing `Ctrl + Shift + V`. To save and exit nano, use `Ctrl + O` to write out the file, followed by `Enter`, and `Ctrl + X` to exit.
 
+
+## How To Backup Your Ubuntu Web Server
+To create a backup of your Ubuntu web server (`web-01`) and securely transfer it securely to your local machine, and verify its integrity at each stage, follow these steps:
+
+#### Step 1: Create a Main Backup Directory
+First, create a main backup directory on your local machine to store all backup files:
+```
+mkdir -p ~/server_backups
+```
+
+#### Step 2: Connect to the Remote Server
+Use SSH (Secure Shell) to connect to your remote server:
+```
+ssh username@server_ip_address
+```
+
+Replace `username` and `server_ip_address` with the actual server username and IP address.
+
+##### Example:
+```
+ssh ubuntu@54.167.187.16
+```
+
+#### Step 3: Create the Backup Archive
+Create a compressed tarball of the necessary directories:
+```
+sudo tar -czvf /tmp/web-01-backup.tar.gz /home/ubuntu /etc /var/www
+```
+
+This command backs up:
+-  `/home/ubuntu`: Your user's home directory.
+-  `/etc`: System-wide configuration files.
+-  `/var/www`: Common location for web applications.
+
+
+#### Step 4: Verify the Backup on the Remote Server
+1. Check if the backup file was created:
+```
+ls -lh /tmp/web-01-backup.tar.gz
+```
+This command will show you the file size and creation time of the backup archive.
+
+2. View the contents of the archive without extracting:
+```
+tar -tvf /tmp/web-01-backup.tar.gz | less
+```
+This command lists all files in the archive. Press 'q' to exit the list view.
+
+3. Check the integrity of the archive:
+```
+gzip -t /tmp/web-01-backup.tar.gz
+```
+If this command completes without any output, it means the archive is not corrupted. If there's an error, it will be displayed.
+
+4. Verify specific directories or files are included:
+```
+tar -tvf /tmp/web-01-backup.tar.gz | grep "/home/ubuntu"
+tar -tvf /tmp/web-01-backup.tar.gz | grep "/etc"
+tar -tvf /tmp/web-01-backup.tar.gz | grep "/var/www"
+```
+These commands will show you if the specified directories are present in the archive.
+
+5. Check the total number of files in the archive:
+```
+tar -tvf /tmp/web-01-backup.tar.gz | wc -l
+```
+This will give you a count of all files and directories in the archive.
+
+#### Step 5: Exit the server
+Exit the SSH session using the following command:
+```
+exit
+```
+
+#### Step 6: Transfer the Backup to Your Local Machine
+Now, on your local machine, use the `scp` command to transfer the backup file from the remote server to your local machine's main backup directory:
+```
+scp username@server_ip_address:/tmp/web-01-backup.tar.gz ~/server_backups/
+```
+
+Replace `username` and `server_ip_address` with the actual server username and IP address.
+
+##### Example:
+```
+scp ubuntu@54.167.187.16:/tmp/web-01-backup.tar.gz ~/server_backups/
+```
+
+#### Step 7: Verify the Backup on Your Local Machine
+After running the SCP (Secure Copy Protocol) command, verify the transfer by checking the contents of the `~/server_backups/` directory on your local machine:
+```
+ls -lh ~/server_backups
+```
+This should list the `web-01-backup.tar.gz` file if the transfer was successful.
+
+
+#### Step 8: Clean Up the Server
+After successfully transferring the backup file to your local machine, reconnect to your remote server via SSH and remove the temporary backup file (tarball) to free up disk space.
+```
+ssh ubuntu@54.167.187.16
+sudo rm /tmp/web-01-backup.tar.gz
+exit
+```
+
+### Local Machine Information
+1. Get Your Local Machine Username
+On your local machine, run:
+```
+whoami
+```
+This command will output your local machine username.
+
+2. Get Your Local Machine IP Address
+On your local machine, run:
+```
+hostname -I
+```
+This command will output your local machine's IP address. If your local machine has multiple network interfaces, it might show multiple IP addresses. Choose the appropriate one that is accessible from your server.
+
 ## Author
 
 * [Peter Opoku-Mensah](https://github.com/deezyfg)
